@@ -8,9 +8,8 @@ export const boardEndPoints = {
 
 // LISTS ENDPOINTS
 export const listEndPoints = {
-  GET_ALL_LISTS: baseURL + "/boards/:boardId/lists",
+  GET_ALL_LISTS: baseURL + "/boards",
   CREATE_NEW_LIST: baseURL + "/boards/:boardId/lists",
-  GET_LIST: baseURL + "/lists/:listId",
 };
 
 // CARDS ENDPOINTS

@@ -9,7 +9,12 @@ const BoardCard = ({ board }) => {
 
   // function to handle while clicking
   function handleCardClick(boardId) {
-    navigate(`/boards/${boardId}`);
+    navigate(`/boards/${boardId}`, {
+      state: {
+        backgroundColor: prefs.backgroundColor,
+        backgroundImage: prefs.backgroundImage,
+      },
+    });
   }
   return (
     <Card
