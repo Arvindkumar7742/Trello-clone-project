@@ -4,6 +4,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { getAllLists } from "../services/operations/listAPI";
 import { Spinner } from "../components/Spinner";
 import { Container } from "@mui/material";
+import ListsContainer from "../components/List/ListsContainer";
 
 const BoardDetailsPage = () => {
   const [lists, setLists] = useState();
@@ -41,7 +42,9 @@ const BoardDetailsPage = () => {
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
-    ></Container>
+    >
+      <ListsContainer lists={lists} />
+    </Container>
   );
 };
 

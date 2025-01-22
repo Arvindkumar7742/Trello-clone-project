@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { createBoard } from "../services/operations/boardAPI";
+import { createBoard } from "../../services/operations/boardAPI";
 import { useNavigate } from "react-router-dom";
 
 const AddBoardForm = () => {

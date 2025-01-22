@@ -3,8 +3,8 @@ import { Box, Container, Typography } from "@mui/material";
 
 import { getAllBoards } from "../services/operations/boardAPI";
 import { Spinner } from "../components/Spinner";
-import BoardCard from "../components/BoardCard";
-import { CreateBoard } from "../components/CreateBoard";
+import BoardCard from "../components/Board/BoardCard";
+import { CreateBoard } from "../components/Board/CreateBoard";
 
 const BoardsPage = () => {
   const [boards, setBoards] = useState([]);
