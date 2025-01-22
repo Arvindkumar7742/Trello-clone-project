@@ -5,7 +5,7 @@ const BoardCard = ({ board }) => {
   const navigate = useNavigate();
 
   // destructuring the data from board
-  const { name, prefs } = board;
+  const { name, prefs, id } = board;
 
   // function to handle while clicking
   function handleCardClick(boardId) {
