@@ -1,8 +1,24 @@
-import { Button, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { useState } from "react";
+import { createBoard } from "../services/operations/boardAPI";
+import { useNavigate } from "react-router-dom";
 
 const AddBoardForm = () => {
   const [input, setInput] = useState("");
+  const [backgroundOption, setBackgroundOption] = useState("");
+  const navigate = useNavigate();
+
+  const handleChangeBackground = (event) => {
+    setBackgroundOption(event.target.value);
+  };
 
   // handling the changing in the input filed
   function inputChangeHandler(e) {
@@ -10,13 +26,26 @@ const AddBoardForm = () => {
   }
 
   // handling the submission fo the field
-  function submitFormHandler(e) {
+  async function submitFormHandler(e) {
     e.preventDefault();
-    console.log("Printing the form state::", input);
+
+    //calling function to add new card
+    const result = await createBoard(input, backgroundOption);
+    if (result) {
+      navigate("/");
+    }
   }
   return (
     <form onSubmit={submitFormHandler}>
-      <Stack spacing={2} sx={{ marginTop: "20px", color: "rgb(79, 82, 84)" }}>
+      <Stack
+        spacing={2}
+        sx={{
+          mx: "auto",
+          width: ["300px", "auto", "auto", "auto"],
+          marginTop: "20px",
+          color: "rgb(79, 82, 84)",
+        }}
+      >
         <label htmlFor="boardName">
           Board Title <span className="text-red-400">*</span>
         </label>
@@ -33,7 +62,33 @@ const AddBoardForm = () => {
         {input.trim() == "" && (
           <Typography>👋 Board title is required</Typography>
         )}
+        <div>
+          <FormControl sx={{ m: 0, minWidth: 140 }}>
+            <InputLabel id="demo-simple-select-helper-label">
+              Background
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-helper-label"
+              id="demo-simple-select-helper"
+              value={backgroundOption}
+              label="Background"
+              onChange={handleChangeBackground}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value="blue">Blue</MenuItem>
+              <MenuItem value="green">Green</MenuItem>
+              <MenuItem value="orange">Orange</MenuItem>
+              <MenuItem value="red">Red</MenuItem>
+              <MenuItem value="pink">Pink</MenuItem>
+              <MenuItem value="sky">Skyblue</MenuItem>
+              <MenuItem value="lime">Lime</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
         <Button
+          type="submit"
           variant="solid"
           sx={{
             width: "100%",

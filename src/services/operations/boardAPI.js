@@ -23,7 +23,6 @@ export async function getAllBoards() {
       throw new Error("Unexpected response format");
     }
 
-    toast.success("Boards data fetched Successfully");
     return response.data;
   } catch (err) {
     toast.error(
@@ -34,11 +33,11 @@ export async function getAllBoards() {
 }
 
 // function to create a new board
-export async function createBoard({ boardName, bgColor }) {
+export async function createBoard(boardName, bgColor) {
   try {
     let response = await apiConnector("POST", CREATE_NEW_BOARD, null, null, {
       name: boardName,
-      prefs_background: bgColor,
+      prefs_background: bgColor !== "" ? bgColor : "blue",
       key: APIKey,
       token: APIToken,
     });
@@ -49,12 +48,12 @@ export async function createBoard({ boardName, bgColor }) {
       throw new Error("Unexpected response format");
     }
 
-    toast.success("Boards data fetched Successfully");
+    toast.success("Board created Successfully");
     return response.data;
   } catch (err) {
     toast.error(
-      err?.response?.data || err.message || "Error in getting the Boards data"
+      err?.response?.data || err.message || "Error in creating a data"
     );
-    console.log("Print the Error from calling API::", err);
+    console.log("Print the Error from calling API for creating a board::", err);
   }
 }
