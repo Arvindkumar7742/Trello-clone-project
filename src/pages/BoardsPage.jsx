@@ -4,6 +4,7 @@ import { Box, Container, Typography } from "@mui/material";
 import { getAllBoards } from "../services/operations/boardAPI";
 import { Spinner } from "../components/Spinner";
 import BoardCard from "../components/BoardCard";
+import { CreateBoard } from "../components/CreateBoard";
 
 const BoardsPage = () => {
   const [boards, setBoards] = useState([]);
@@ -53,6 +54,7 @@ const BoardsPage = () => {
           {boards.map((board) => (
             <BoardCard key={board.id} board={board} />
           ))}
+          <CreateBoard />
         </Container>
       </Box>
     </>

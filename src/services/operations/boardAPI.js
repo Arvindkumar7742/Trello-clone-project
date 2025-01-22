@@ -32,3 +32,29 @@ export async function getAllBoards() {
     console.log("Print the Error from calling API::", err);
   }
 }
+
+// function to create a new board
+export async function createBoard({ boardName, bgColor }) {
+  try {
+    let response = await apiConnector("POST", CREATE_NEW_BOARD, null, null, {
+      name: boardName,
+      prefs_background: bgColor,
+      key: APIKey,
+      token: APIToken,
+    });
+
+    console.log("Response received:", response);
+
+    if (!response?.data) {
+      throw new Error("Unexpected response format");
+    }
+
+    toast.success("Boards data fetched Successfully");
+    return response.data;
+  } catch (err) {
+    toast.error(
+      err?.response?.data || err.message || "Error in getting the Boards data"
+    );
+    console.log("Print the Error from calling API::", err);
+  }
+}
