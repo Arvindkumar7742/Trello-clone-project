@@ -2,6 +2,7 @@
 const APIKey = import.meta.env.VITE_API_KEY;
 const APIToken = import.meta.env.VITE_API_TOKEN;
 
+import { toast } from "react-toastify";
 import { apiConnector } from "../apiconnector";
 import { boardEndPoints } from "../apis";
 
@@ -11,12 +12,23 @@ const { FETCH_ALL_BOARD, CREATE_NEW_BOARD } = boardEndPoints;
 // function to get lists of the boards
 export async function getAllBoards() {
   try {
-    const result = await apiConnector("GET", FETCH_ALL_BOARD, null, null, {
+    let response = await apiConnector("GET", FETCH_ALL_BOARD, null, null, {
       key: APIKey,
       token: APIToken,
     });
-    console.log("Printing the result::", result);
+
+    console.log("Response received:", response);
+
+    if (!response?.data) {
+      throw new Error("Unexpected response format");
+    }
+
+    toast.success("Boards data fetched Successfully");
+    return response.data;
   } catch (err) {
-    console.log("Print the result from API::", err);
+    toast.error(
+      err?.response?.data || err.message || "Error in getting the Boards data"
+    );
+    console.log("Print the Error from calling API::", err);
   }
 }

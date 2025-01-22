@@ -27,20 +27,26 @@ const Navbar = () => {
         }}
       >
         {/* Left Section: Home Icon and Boards */}
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <IconButton
             edge="start"
             color="inherit"
             aria-label="home"
             onClick={handleHomeClick}
-            sx={{ mr: 1 }}
+            sx={{ mr: "2px", fontSize: ["0.8rem", "1rem", "10rem"] }}
           >
             <HomeIcon />
           </IconButton>
           <Typography
             variant="h6"
             component="div"
-            sx={{ cursor: "pointer" }}
+            sx={{ cursor: "pointer", fontSize: ["0.8rem", "1rem", "1.1rem"] }}
             onClick={handleHomeClick}
           >
             Boards

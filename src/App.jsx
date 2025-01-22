@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
-import HomePages from "./pages/HomePages";
 import BoardsPage from "./pages/BoardsPage";
+import BoardDetailsPage from "./pages/BoardDetailsPage";
 
 function App() {
   return (
@@ -11,8 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/boards" replace />} />
         <Route path="/boards" element={<MainLayout />}>
-          <Route index element={<HomePages />} />
-          <Route path="/boards/:id" element={<BoardsPage />} />
+          <Route index element={<BoardsPage />} />
+          <Route path="/boards/:id" element={<BoardDetailsPage />} />
         </Route>
       </Routes>
     </>
