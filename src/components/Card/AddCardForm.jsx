@@ -13,15 +13,23 @@ const AddCardForm = ({ setAddCardFrom, setCards, listId }) => {
     }
 
     const result = await createCard(listId, title);
-    console.log("sl;nc", setCards);
-    setCards((prvCard) => [...prvCard, result]);
-    console.log("setA", setAddCardFrom);
+    if (result) {
+      setCards((prvCard) => [...prvCard, result]);
+    }
     setAddCardFrom(false);
   }
 
   // function to close the form for icon
   function handleCloseIcnClick() {
     setAddCardFrom(false);
+  }
+
+  // function to handle key up on the input tag
+  function handleKeyUp(e) {
+    if (e.key === "Enter") {
+      setAddCardFrom(false);
+      handleAddBtnClick();
+    }
   }
 
   return (
@@ -38,6 +46,7 @@ const AddCardForm = ({ setAddCardFrom, setCards, listId }) => {
         onChange={(e) => {
           setTitle(e.target.value);
         }}
+        onKeyUp={handleKeyUp}
         className="bg-[#242425] p-1 pb-4 rounded-md  outline-1 outline-blue-400 border-none"
       />
       <Box

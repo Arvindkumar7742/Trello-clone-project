@@ -25,6 +25,7 @@ const AddListForm = ({ setAddListFrom, setLists, boardId }) => {
   // function to handle key up on the input tag
   function handleKeyUp(e) {
     if (e.key === "Enter") {
+      setAddCardFrom(false);
       handleAddBtnClick();
     }
   }
