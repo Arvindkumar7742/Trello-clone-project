@@ -1,4 +1,12 @@
-import { Box, Card, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  Typography,
+  Popper,
+  Paper,
+  Button,
+  ClickAwayListener,
+} from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useEffect, useState } from "react";
 import { getAllCards } from "../../services/operations/cardAPI";
@@ -7,18 +15,35 @@ import AddNewCard from "../Card/AddNewCard";
 
 const ListCard = ({ list }) => {
   const [cards, setCards] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null); // For controlling the popper
 
-  // destructing the list data
+  // Destructuring the list data
   const { name, id } = list;
 
-  // get all the card of this list on first render
+  // Get all the cards of this list on first render
   useEffect(() => {
     const fetchAllCards = async () => {
       const result = await getAllCards(id);
       setCards(result);
     };
     fetchAllCards();
-  }, []);
+  }, [id]);
+
+  // Handle popper toggle
+  const handleIconClick = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
+
+  // Handle popper close
+  const handleClosePopper = () => {
+    setAnchorEl(null);
+  };
+
+  // Handle delete action
+  const handleDeleteAction = () => {
+    console.log("Perform delete action");
+    handleClosePopper();
+  };
 
   return (
     <Card
@@ -49,8 +74,41 @@ const ListCard = ({ list }) => {
         >
           {name}
         </Typography>
-        <MoreHorizIcon titleAccess="list actions" sx={{ cursor: "pointer" }} />
+        <MoreHorizIcon
+          titleAccess="list actions"
+          sx={{ cursor: "pointer" }}
+          onClick={handleIconClick}
+        />
       </Box>
+
+      {/* Popper for Delete Action */}
+      <Popper open={Boolean(anchorEl)} anchorEl={anchorEl} placement="right">
+        <ClickAwayListener onClickAway={handleClosePopper}>
+          <Paper
+            elevation={3}
+            sx={{
+              padding: 1,
+              backgroundColor: "rgb(46, 45, 45)",
+              color: "white",
+              borderRadius: "5px",
+            }}
+          >
+            <Button
+              fullWidth
+              sx={{
+                color: "rgb(184, 189, 194)",
+                fontWeight: "bold",
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                },
+              }}
+              onClick={handleDeleteAction}
+            >
+              Delete List
+            </Button>
+          </Paper>
+        </ClickAwayListener>
+      </Popper>
 
       {/* Showing all the cards */}
       {cards.length > 0 && <ShowCards cards={cards} setCards={setCards} />}
