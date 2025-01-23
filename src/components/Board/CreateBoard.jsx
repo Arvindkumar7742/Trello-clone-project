@@ -1,13 +1,14 @@
-import { Card } from "@mui/material";
+import { Card, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import CreateBoardModal from "./CreateBoardModal";
 
-export const CreateBoard = () => {
+export const CreateBoard = ({ length }) => {
   const [openModal, setOpenModal] = useState(false);
 
   function clickCreateHandler() {
-    setOpenModal(true);
+    // condition of cards limits exceeded
+    if (length < 10) setOpenModal(true);
   }
   return (
     <div>
@@ -30,7 +31,14 @@ export const CreateBoard = () => {
           transitionDuration: "200ms",
         }}
       >
-        <AddIcon /> Create Board
+        {length < 10 ? (
+          <>
+            {" "}
+            <AddIcon /> Create Board
+          </>
+        ) : (
+          <Typography>Cards limit exceeded</Typography>
+        )}
       </Card>
       {openModal && (
         <CreateBoardModal openModal={openModal} setOpenModal={setOpenModal} />

@@ -54,7 +54,7 @@ const BoardsPage = () => {
           {boards.map((board) => (
             <BoardCard key={board.id} board={board} />
           ))}
-          <CreateBoard />
+          <CreateBoard length={boards.length} />
         </Container>
       </Box>
     </>
