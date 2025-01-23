@@ -3,12 +3,15 @@ import React from "react";
 import ListCard from "./ListCard";
 
 const ListsContainer = ({ lists }) => {
-  console.log("Lists");
   return (
     <Container
       sx={{
-        width: "100%",
-        marginLeft: 0,
+        width: "fit-content",
+        margin: 0,
+        marginTop: "20px",
+        display: "flex",
+        gap: "10px",
+        alignItems: "flex-start",
       }}
     >
       {lists.map((list) => (

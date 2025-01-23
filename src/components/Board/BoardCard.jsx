@@ -13,6 +13,7 @@ const BoardCard = ({ board, length }) => {
       state: {
         backgroundColor: prefs.backgroundColor,
         backgroundImage: prefs.backgroundImage,
+        boardName: name,
       },
     });
   }

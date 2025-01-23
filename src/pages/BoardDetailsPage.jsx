@@ -3,7 +3,7 @@ import { useLocation, useParams } from "react-router-dom";
 
 import { getAllLists } from "../services/operations/listAPI";
 import { Spinner } from "../components/Spinner";
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import ListsContainer from "../components/List/ListsContainer";
 
 const BoardDetailsPage = () => {
@@ -13,7 +13,9 @@ const BoardDetailsPage = () => {
   const [loading, setLoading] = useState(true);
 
   // getting the data like background color and image
-  const { backgroundColor, backgroundImage } = location.state;
+  const { backgroundColor, backgroundImage, boardName } = location.state;
+
+  console.log("I am prining the boadr name:", boardName);
 
   // fetching all the initial lists from the particular board
   useEffect(() => {
@@ -43,6 +45,18 @@ const BoardDetailsPage = () => {
         backgroundSize: "cover",
       }}
     >
+      <Typography
+        variant="h7"
+        sx={{
+          marginLeft: "28px",
+          marginTop: "20px",
+          fontSize: "25px",
+          color: "white",
+          fontFamily: "cursive",
+        }}
+      >
+        {boardName}
+      </Typography>
       <ListsContainer lists={lists} />
     </Container>
   );
