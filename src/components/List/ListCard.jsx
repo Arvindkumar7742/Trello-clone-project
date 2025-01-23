@@ -15,7 +15,6 @@ const ListCard = ({ list }) => {
   useEffect(() => {
     const fetchAllCards = async () => {
       const result = await getAllCards(id);
-      console.log(result);
       setCards(result);
     };
     fetchAllCards();
@@ -57,7 +56,7 @@ const ListCard = ({ list }) => {
       {cards.length > 0 && <ShowCards cards={cards} />}
 
       {/* Component for adding new card */}
-      <AddNewCard setCards={setCards} />
+      <AddNewCard setCards={setCards} listId={list.id} />
     </Card>
   );
 };

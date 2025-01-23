@@ -1,16 +1,22 @@
 import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import { createCard } from "../../services/operations/cardAPI";
 
-const AddCardForm = ({ setAddCardFrom, setCard }) => {
+const AddCardForm = ({ setAddCardFrom, setCards, listId }) => {
   const [title, setTitle] = useState("");
 
   // function for adding in the card
-  function handleAddBtnClick() {
+  async function handleAddBtnClick() {
     if (title.trim() == "") {
       return setAddCardFrom(false);
     }
-    console.log("Yaha se kerna hai", title);
+
+    const result = await createCard(listId, title);
+    console.log("sl;nc", setCards);
+    setCards((prvCard) => [...prvCard, result]);
+    console.log("setA", setAddCardFrom);
+    setAddCardFrom(false);
   }
 
   // function to close the form for icon

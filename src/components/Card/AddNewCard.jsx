@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import AddCardForm from "./AddCardForm";
 
-const AddNewCard = ({ setCard }) => {
+const AddNewCard = ({ setCards, listId }) => {
   const [addCardForm, setAddCardFrom] = useState(false);
 
   // ro add the add card form in rhe cards
@@ -18,7 +18,11 @@ const AddNewCard = ({ setCard }) => {
       }}
     >
       {addCardForm ? (
-        <AddCardForm setAddCardFrom={setAddCardFrom} setCard={setCard} />
+        <AddCardForm
+          setAddCardFrom={setAddCardFrom}
+          setCards={setCards}
+          listId={listId}
+        />
       ) : (
         <Typography
           onClick={handleAddCardClick}
