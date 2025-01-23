@@ -53,7 +53,7 @@ const ListCard = ({ list }) => {
       </Box>
 
       {/* Showing all the cards */}
-      {cards.length > 0 && <ShowCards cards={cards} />}
+      {cards.length > 0 && <ShowCards cards={cards} setCards={setCards} />}
 
       {/* Component for adding new card */}
       <AddNewCard setCards={setCards} listId={list.id} />
