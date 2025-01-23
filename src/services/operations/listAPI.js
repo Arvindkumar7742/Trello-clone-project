@@ -8,7 +8,7 @@ import { apiConnector } from "../apiconnector";
 import { listEndPoints } from "../apis";
 
 // destructuring the end points of the lists
-const { GET_ALL_LISTS, CREATE_NEW_LIST } = listEndPoints;
+const { GET_ALL_LISTS, CREATE_NEW_LIST, DELETE_LIST } = listEndPoints;
 
 // function to fetch all the lists for a particular board
 export async function getAllLists(boardId) {
@@ -67,5 +67,36 @@ export async function createList(boardId, title) {
       err?.response?.data || err.message || "Error in creating a list"
     );
     console.log("Print the Error from calling API for creating an list::", err);
+  }
+}
+
+// function to delete or archive a list
+export async function deleteList(listId) {
+  try {
+    let response = await apiConnector(
+      "PUT",
+      DELETE_LIST + `/${listId}/closed`,
+      null,
+      null,
+      {
+        value: true,
+        key: APIKey,
+        token: APIToken,
+      }
+    );
+
+    console.log("Response received:", response);
+
+    if (!response?.data) {
+      throw new Error("Unexpected response format");
+    }
+
+    toast.success("List deleted successfully");
+    return response.data;
+  } catch (err) {
+    toast.error(
+      err?.response?.data || err.message || "Error in creating a list"
+    );
+    console.log("Print the Error from calling API for Deleting  a list::", err);
   }
 }

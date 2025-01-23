@@ -12,8 +12,9 @@ import { useEffect, useState } from "react";
 import { getAllCards } from "../../services/operations/cardAPI";
 import ShowCards from "../Card/ShowCards";
 import AddNewCard from "../Card/AddNewCard";
+import { deleteList } from "../../services/operations/listAPI";
 
-const ListCard = ({ list }) => {
+const ListCard = ({ list, setLists }) => {
   const [cards, setCards] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null); // For controlling the popper
 
@@ -40,9 +41,15 @@ const ListCard = ({ list }) => {
   };
 
   // Handle delete action
-  const handleDeleteAction = () => {
-    console.log("Perform delete action");
+  const handleDeleteAction = async () => {
     handleClosePopper();
+    const res = await deleteList(list.id);
+    if (res) {
+      // filtering the lists for the deleted list
+      setLists((prevLists) =>
+        prevLists.filter((itList) => itList.id !== list.id)
+      );
+    }
   };
 
   return (

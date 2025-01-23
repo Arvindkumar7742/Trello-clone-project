@@ -16,7 +16,7 @@ const ListsContainer = ({ boardId, lists, setLists }) => {
       }}
     >
       {lists.map((list) => (
-        <ListCard key={list.id} list={list} />
+        <ListCard key={list.id} list={list} setLists={setLists} />
       ))}
 
       {/* components to add new list */}

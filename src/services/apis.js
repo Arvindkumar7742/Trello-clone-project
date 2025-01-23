@@ -10,6 +10,7 @@ export const boardEndPoints = {
 export const listEndPoints = {
   GET_ALL_LISTS: baseURL + "/boards",
   CREATE_NEW_LIST: baseURL + "/boards",
+  DELETE_LIST: baseURL + "/lists",
 };
 
 // CARDS ENDPOINTS
