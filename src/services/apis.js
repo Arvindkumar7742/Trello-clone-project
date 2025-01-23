@@ -15,7 +15,7 @@ export const listEndPoints = {
 // CARDS ENDPOINTS
 export const cardEndPoints = {
   CREATE_NEW_CARD: baseURL + "/cards",
-  GET_ALL_CARDS: baseURL + "/lists/:listsId/cards",
+  GET_ALL_CARDS: baseURL + "/lists",
 };
 
 // CHECK LISTS ENDPOINTS
