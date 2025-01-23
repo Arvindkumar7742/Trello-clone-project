@@ -15,8 +15,6 @@ const BoardDetailsPage = () => {
   // getting the data like background color and image
   const { backgroundColor, backgroundImage, boardName } = location.state;
 
-  console.log("I am prining the boadr name:", boardName);
-
   // fetching all the initial lists from the particular board
   useEffect(() => {
     const fetchAllLists = async () => {
@@ -57,7 +55,7 @@ const BoardDetailsPage = () => {
       >
         {boardName}
       </Typography>
-      <ListsContainer lists={lists} />
+      <ListsContainer boardId={id} lists={lists} setLists={setLists} />
     </Container>
   );
 };

@@ -1,8 +1,9 @@
 import { Container } from "@mui/material";
 import React from "react";
 import ListCard from "./ListCard";
+import AddList from "./AddList";
 
-const ListsContainer = ({ lists }) => {
+const ListsContainer = ({ boardId, lists, setLists }) => {
   return (
     <Container
       sx={{
@@ -17,6 +18,9 @@ const ListsContainer = ({ lists }) => {
       {lists.map((list) => (
         <ListCard key={list.id} list={list} />
       ))}
+
+      {/* components to add new list */}
+      <AddList boardId={boardId} setLists={setLists} />
     </Container>
   );
 };
