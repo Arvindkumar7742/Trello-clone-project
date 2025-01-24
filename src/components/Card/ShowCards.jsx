@@ -2,9 +2,12 @@ import { Box, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteCard } from "../../services/operations/cardAPI";
 import { useState } from "react";
+import CheckListModal from "../CheckList/CheckListModal";
 
 const ShowCards = ({ cards, setCards }) => {
   const [disabledIcons, setDisabledIcons] = useState({});
+  const [openCheckListModal, setOpenCheckListModal] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   // Function to delete the card
   async function handleCardDelete(cardId) {
@@ -21,6 +24,15 @@ const ShowCards = ({ cards, setCards }) => {
     }
   }
 
+  // handling clicking on some particular card
+  function handleCardClick(card) {
+    setSelectedCard({
+      cardId: card.id,
+      cardName: card.name,
+    });
+    setOpenCheckListModal(true);
+  }
+
   return (
     <Box
       sx={{
@@ -33,12 +45,16 @@ const ShowCards = ({ cards, setCards }) => {
         <Typography
           className="group"
           key={card.id}
+          onClick={() => {
+            handleCardClick(card);
+          }}
           sx={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             backgroundColor: "rgb(36, 36, 37)",
             borderRadius: "10px",
+            cursor: "pointer",
             p: 1,
             fontSize: "14px",
             fontWeight: 400,
@@ -64,6 +80,15 @@ const ShowCards = ({ cards, setCards }) => {
           />
         </Typography>
       ))}
+
+      {/* opening the modal basis on the checklist modal */}
+      {openCheckListModal && (
+        <CheckListModal
+          openCheckListModal={openCheckListModal}
+          setOpenCheckListModal={setOpenCheckListModal}
+          selectedCard={selectedCard}
+        />
+      )}
     </Box>
   );
 };
