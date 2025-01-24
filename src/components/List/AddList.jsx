@@ -6,7 +6,8 @@ import AddListForm from "./AddListForm";
 
 const AddList = ({ boardId, setLists }) => {
   const [addListForm, setAddListFrom] = useState(false);
-  // // function to add the new list in the all lists
+
+  // function to add the new list in the all lists
   function handleAddClickHandler() {
     setAddListFrom(true);
   }
@@ -69,7 +70,7 @@ const AddList = ({ boardId, setLists }) => {
                   fontSize: "large",
                   marginLeft: "10px",
                 }}
-              />{" "}
+              />
               Add another list
             </Typography>
           </Box>

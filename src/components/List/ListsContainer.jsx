@@ -15,6 +15,7 @@ const ListsContainer = ({ boardId, lists, setLists }) => {
         alignItems: "flex-start",
       }}
     >
+      {/* map on the list to show all the lists */}
       {lists.map((list) => (
         <ListCard key={list.id} list={list} setLists={setLists} />
       ))}

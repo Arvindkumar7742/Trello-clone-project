@@ -13,6 +13,7 @@ const AddListForm = ({ setAddListFrom, setLists, boardId }) => {
       return setAddListFrom(false);
     }
 
+    // calling api function to create new list
     const result = await createList(boardId, title);
     if (result) {
       setLists((prvLists) => {

@@ -7,10 +7,12 @@ import { Spinner } from "../components/Spinner";
 import ListsContainer from "../components/List/ListsContainer";
 
 const BoardDetailsPage = () => {
+  const [loading, setLoading] = useState(true);
   const [lists, setLists] = useState();
+
+  // accessing the info from the route
   const location = useLocation();
   const { id } = useParams();
-  const [loading, setLoading] = useState(true);
 
   // getting the data like background color and image
   const { backgroundColor, backgroundImage, boardName } = location.state;
@@ -73,6 +75,8 @@ const BoardDetailsPage = () => {
       >
         {boardName}
       </Typography>
+
+      {/* lists container to show all the lists */}
       <ListsContainer boardId={id} lists={lists} setLists={setLists} />
     </Container>
   );

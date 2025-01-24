@@ -17,7 +17,7 @@ import { deleteList } from "../../services/operations/listAPI";
 
 const ListCard = ({ list, setLists }) => {
   const [cards, setCards] = useState([]);
-  const [anchorEl, setAnchorEl] = useState(null); // For controlling the popper
+  const [anchorEl, setAnchorEl] = useState(null);
 
   // Destructuring the list data
   const { name, id } = list;
