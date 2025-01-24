@@ -33,7 +33,11 @@ export const CheckListsContainer = ({ cardId, checkLists, setCheckLists }) => {
     >
       {checkLists &&
         checkLists.map((checkList) => (
-          <CheckListCard key={checkList.id} checkList={checkList} />
+          <CheckListCard
+            key={checkList.id}
+            checkList={checkList}
+            setCheckLists={setCheckLists}
+          />
         ))}
     </Box>
   );

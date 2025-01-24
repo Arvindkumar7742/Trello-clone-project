@@ -1,8 +1,30 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import ChecklistIcon from "@mui/icons-material/Checklist";
+import { deleteCheckList } from "../../services/operations/checklistAPI";
 
-export const CheckListCard = ({ checkList }) => {
+export const CheckListCard = ({ checkList, setCheckLists }) => {
+  // for disabling the button while deleting a checkList
+  const [disabledIcons, setDisabledIcons] = useState({});
+
+  // function to delete a particular check list
+  async function handleCheckListDelete(checklistId) {
+    // Disable pointer events for this card's delete icon
+    setDisabledIcons((prev) => ({ ...prev, [checklistId]: true }));
+
+    // making api call to delete the check items
+    const result = await deleteCheckList(checklistId);
+
+    if (result) {
+      setCheckLists((prevCheckList) =>
+        prevCheckList.filter((itCheckList) => itCheckList.id !== checklistId)
+      );
+    } else {
+      // enable the btn again
+      setDisabledIcons((prev) => ({ ...prev, [checklistId]: false }));
+    }
+  }
+
   return (
     <Box
       sx={{
@@ -10,15 +32,45 @@ export const CheckListCard = ({ checkList }) => {
         flexDirection: "column",
       }}
     >
-      <Typography>
-        <ChecklistIcon
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          justifyItems: "center",
+          alignItems: "center",
+        }}
+      >
+        <Typography>
+          <ChecklistIcon
+            sx={{
+              marginRight: "20px",
+              fontFamily: "sans-serif",
+            }}
+          />
+          {checkList.name}
+        </Typography>
+        <Typography
+          onClick={() => handleCheckListDelete(checkList.id)}
+          variant="h7"
           sx={{
-            marginRight: "20px",
+            backgroundColor: "#444d55",
+            width: "fit-content",
+            p: 1,
+            borderRadius: "10px",
+            border: "2px solid #343B42",
+            fontSize: "17px",
             fontFamily: "sans-serif",
+            cursor: disabledIcons[checkList.id] ? "not-allowed" : "pointer",
+            pointerEvents: disabledIcons[checkList.id] ? "none" : "auto",
+            ":hover": {
+              cursor: "pointer",
+              backgroundColor: "#3b434a",
+            },
           }}
-        />
-        {checkList.name}
-      </Typography>
+        >
+          Delete
+        </Typography>
+      </Box>
     </Box>
   );
 };

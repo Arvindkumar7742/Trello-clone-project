@@ -8,7 +8,8 @@ import { apiConnector } from "../apiconnector";
 import { checkListEndPoints } from "../apis";
 
 // destructuring the end points of the lists
-const { GET_ALL_CHECKlISTS, CREATE_CHECK_LIST } = checkListEndPoints;
+const { GET_ALL_CHECKlISTS, CREATE_CHECK_LIST, DELETE_CHECK_LIST } =
+  checkListEndPoints;
 
 // function to get all the checklists for a card
 export async function fetchAllCheckLists(cardId) {
@@ -68,6 +69,41 @@ export async function createCheckList(cardId, name) {
     );
     console.log(
       "Print the Error from calling API To create a new checklist::",
+      err
+    );
+  }
+}
+
+// function to delete a checklist
+export async function deleteCheckList(checkList) {
+  try {
+    let response = await apiConnector(
+      "DELETE",
+      DELETE_CHECK_LIST + `/${checkList}`,
+      null,
+      null,
+      {
+        key: APIKey,
+        token: APIToken,
+      }
+    );
+
+    console.log("Response received:", response);
+
+    if (!response?.data) {
+      throw new Error("Unexpected response format");
+    }
+
+    toast.success("Checklist Deleted");
+    return response.data;
+  } catch (err) {
+    toast.error(
+      err?.response?.data ||
+        err.message ||
+        "Error in getting the CheckLists data"
+    );
+    console.log(
+      "Print the Error from calling API To Delete a checklist::",
       err
     );
   }

@@ -24,4 +24,5 @@ export const cardEndPoints = {
 export const checkListEndPoints = {
   GET_ALL_CHECKlISTS: baseURL + "/cards",
   CREATE_CHECK_LIST: baseURL + "/checklists",
+  DELETE_CHECK_LIST: baseURL + "/checklists",
 };
