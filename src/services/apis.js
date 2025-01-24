@@ -32,4 +32,5 @@ export const checkItemsEndPoints = {
   GET_ALL_CHECK_ITEMS: baseURL + "/checklists",
   CREATE_CHECK_ITEM: baseURL + "/checklists",
   DELETE_CHECK_ITEM: baseURL + "/checklists",
+  UPDATE_CHECK_ITEM: baseURL + "/cards",
 };

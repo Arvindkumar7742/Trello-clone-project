@@ -36,6 +36,7 @@ export const CheckListsContainer = ({ cardId, checkLists, setCheckLists }) => {
           <CheckListCard
             key={checkList.id}
             checkList={checkList}
+            cardId={cardId}
             setCheckLists={setCheckLists}
           />
         ))}

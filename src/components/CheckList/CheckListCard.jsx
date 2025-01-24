@@ -4,7 +4,7 @@ import ChecklistIcon from "@mui/icons-material/Checklist";
 import { deleteCheckList } from "../../services/operations/checklistAPI";
 import CheckItemsContainer from "../CheckItems/CheckItemsContainer";
 
-export const CheckListCard = ({ checkList, setCheckLists }) => {
+export const CheckListCard = ({ checkList, setCheckLists, cardId }) => {
   // for disabling the button while deleting a checkList
   const [disabledIcons, setDisabledIcons] = useState({});
 
@@ -81,7 +81,7 @@ export const CheckListCard = ({ checkList, setCheckLists }) => {
       </Box>
 
       {/* container to show all the check items */}
-      <CheckItemsContainer checklistId={checkList.id} />
+      <CheckItemsContainer checklistId={checkList.id} cardId={cardId} />
     </Box>
   );
 };

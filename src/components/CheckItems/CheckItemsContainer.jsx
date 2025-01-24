@@ -5,7 +5,7 @@ import CheckItemCard from "./CheckItemCard";
 import CheckItemForm from "./CheckItemForm";
 import ProgressBarComponent from "./ProgressBarComponent";
 
-const CheckItemsContainer = ({ checklistId }) => {
+const CheckItemsContainer = ({ checklistId, cardId }) => {
   const [checkItems, setCheckItems] = useState([]);
   const [addCheckItemForm, setAddCheckItemForm] = useState(false);
 
@@ -30,6 +30,7 @@ const CheckItemsContainer = ({ checklistId }) => {
           checkItem={checkItem}
           checklistId={checklistId}
           setCheckItems={setCheckItems}
+          cardId={cardId}
         />
       ))}
       {addCheckItemForm ? (

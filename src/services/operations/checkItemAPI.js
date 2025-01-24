@@ -8,8 +8,12 @@ import { apiConnector } from "../apiconnector";
 import { checkItemsEndPoints } from "../apis";
 
 // destructuring the end points of the check items
-const { GET_ALL_CHECK_ITEMS, CREATE_CHECK_ITEM, DELETE_CHECK_ITEM } =
-  checkItemsEndPoints;
+const {
+  GET_ALL_CHECK_ITEMS,
+  CREATE_CHECK_ITEM,
+  DELETE_CHECK_ITEM,
+  UPDATE_CHECK_ITEM,
+} = checkItemsEndPoints;
 
 // function to fetch all the check item for check list
 export async function fetchAllCheckItems(checkListId) {
@@ -66,7 +70,7 @@ export async function createCheckItem(checkListId, checkItemName) {
       throw new Error("Unexpected response format");
     }
 
-    toast.success("CheckItem created");
+    toast.success("Item created");
     return response.data;
   } catch (err) {
     toast.error(
@@ -81,8 +85,6 @@ export async function createCheckItem(checkListId, checkItemName) {
 
 // API function to delete a check item
 export async function deleteCheckItem(checkListId, checkItemId) {
-  console.log(checkListId, checkItemId);
-
   try {
     let response = await apiConnector(
       "DELETE",
@@ -101,7 +103,7 @@ export async function deleteCheckItem(checkListId, checkItemId) {
       throw new Error("Unexpected response format");
     }
 
-    toast.success("CheckItem created");
+    toast.success("Item deleted");
     return response.data;
   } catch (err) {
     toast.error(
@@ -109,6 +111,39 @@ export async function deleteCheckItem(checkListId, checkItemId) {
     );
     console.log(
       "Print the Error from calling API To delete a checkItem::",
+      err
+    );
+  }
+}
+
+// API function to update on check Item
+export async function updateCheckItem(cardId, checkItemId, status) {
+  try {
+    let response = await apiConnector(
+      "PUT",
+      UPDATE_CHECK_ITEM + `/${cardId}/checkItem/${checkItemId}`,
+      null,
+      null,
+      {
+        key: APIKey,
+        token: APIToken,
+        state: status,
+      }
+    );
+
+    console.log("Response received:", response);
+
+    if (!response?.data) {
+      throw new Error("Unexpected response format");
+    }
+
+    return response.data;
+  } catch (err) {
+    toast.error(
+      err?.response?.data || err.message || "Error in updating check Item"
+    );
+    console.log(
+      "Print the Error from calling API To updating a checkItem::",
       err
     );
   }
