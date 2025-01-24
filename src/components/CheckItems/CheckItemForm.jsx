@@ -20,6 +20,11 @@ const CheckItemForm = ({ checklistId, setCheckItems, setAddCheckItemForm }) => {
     }
   }
 
+  // function to handle enter on text area
+  function handleKeyUpTextArea(e) {
+    if (e.key === "Enter") handleAddBtnClick();
+  }
+
   // handling the changing name in name of check item in text area
   function handleChangeTextArea(e) {
     setCheckItemName(e.target.value);
@@ -44,6 +49,7 @@ const CheckItemForm = ({ checklistId, setCheckItems, setAddCheckItemForm }) => {
         minRows={2}
         value={checkItemName}
         onChange={handleChangeTextArea}
+        onKeyUp={handleKeyUpTextArea}
         sx={{
           backgroundColor: "black",
           width: "50%",

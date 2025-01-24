@@ -26,6 +26,7 @@ const CheckItemsContainer = ({ checklistId }) => {
         <CheckItemCard
           key={checkItem.id}
           checkItem={checkItem}
+          checklistId={checklistId}
           setCheckItems={setCheckItems}
         />
       ))}

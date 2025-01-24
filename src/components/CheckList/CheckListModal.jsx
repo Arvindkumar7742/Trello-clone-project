@@ -89,6 +89,8 @@ export default function CheckListModal({
               backgroundColor: "#444d55",
               width: "fit-content",
               p: 1,
+              pl: 2,
+              pr: 3,
               borderRadius: "10px",
               border: "2px solid #343B42",
               fontSize: "17px",

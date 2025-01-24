@@ -8,7 +8,8 @@ import { apiConnector } from "../apiconnector";
 import { checkItemsEndPoints } from "../apis";
 
 // destructuring the end points of the check items
-const { GET_ALL_CHECK_ITEMS, CREATE_CHECK_ITEM } = checkItemsEndPoints;
+const { GET_ALL_CHECK_ITEMS, CREATE_CHECK_ITEM, DELETE_CHECK_ITEM } =
+  checkItemsEndPoints;
 
 // function to fetch all the check item for check list
 export async function fetchAllCheckItems(checkListId) {
@@ -73,6 +74,41 @@ export async function createCheckItem(checkListId, checkItemName) {
     );
     console.log(
       "Print the Error from calling API To get all the checkItems::",
+      err
+    );
+  }
+}
+
+// API function to delete a check item
+export async function deleteCheckItem(checkListId, checkItemId) {
+  console.log(checkListId, checkItemId);
+
+  try {
+    let response = await apiConnector(
+      "DELETE",
+      DELETE_CHECK_ITEM + `/${checkListId}/checkItems/${checkItemId}`,
+      null,
+      null,
+      {
+        key: APIKey,
+        token: APIToken,
+      }
+    );
+
+    console.log("Response received:", response);
+
+    if (!response?.data) {
+      throw new Error("Unexpected response format");
+    }
+
+    toast.success("CheckItem created");
+    return response.data;
+  } catch (err) {
+    toast.error(
+      err?.response?.data || err.message || "Error in deleting check Item"
+    );
+    console.log(
+      "Print the Error from calling API To delete a checkItem::",
       err
     );
   }
