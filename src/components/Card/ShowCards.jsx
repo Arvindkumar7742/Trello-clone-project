@@ -1,7 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { deleteCard } from "../../services/operations/cardAPI";
 import { useState } from "react";
+
+import { deleteCard } from "../../services/operations/cardAPI";
 import CheckListModal from "../CheckList/CheckListModal";
 
 const ShowCards = ({ cards, setCards }) => {

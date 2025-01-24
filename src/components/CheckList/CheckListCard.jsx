@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ChecklistIcon from "@mui/icons-material/Checklist";
+
 import { deleteCheckList } from "../../services/operations/checklistAPI";
 import CheckItemsContainer from "../CheckItems/CheckItemsContainer";
 

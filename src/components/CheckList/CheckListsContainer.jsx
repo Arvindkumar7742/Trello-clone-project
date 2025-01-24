@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchAllCheckLists } from "../../services/operations/checklistAPI";
 import { Box } from "@mui/material";
+
+import { fetchAllCheckLists } from "../../services/operations/checklistAPI";
 import ScaleLoader from "../ScaleLoader";
 import { CheckListCard } from "./CheckListCard";
 

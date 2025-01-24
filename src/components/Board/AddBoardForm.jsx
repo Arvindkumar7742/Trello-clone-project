@@ -8,8 +8,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { createBoard } from "../../services/operations/boardAPI";
 import { useNavigate } from "react-router-dom";
+
+import { createBoard } from "../../services/operations/boardAPI";
 
 const AddBoardForm = ({ setBoards, setOpenModal }) => {
   const [input, setInput] = useState("");

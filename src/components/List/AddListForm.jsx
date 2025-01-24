@@ -1,6 +1,7 @@
 import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+
 import { createList } from "../../services/operations/listAPI";
 
 const AddListForm = ({ setAddListFrom, setLists, boardId }) => {
@@ -15,7 +16,6 @@ const AddListForm = ({ setAddListFrom, setLists, boardId }) => {
     const result = await createList(boardId, title);
     if (result) {
       setLists((prvLists) => {
-        console.log([...prvLists, result]);
         return [...prvLists, result];
       });
     }

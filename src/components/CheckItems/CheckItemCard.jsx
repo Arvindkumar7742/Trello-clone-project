@@ -1,6 +1,7 @@
 import { Box, Checkbox, FormControlLabel } from "@mui/material";
 import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+
 import { deleteCheckItem } from "../../services/operations/checkItemAPI";
 import { updateCheckItem } from "../../services/operations/checkItemAPI";
 

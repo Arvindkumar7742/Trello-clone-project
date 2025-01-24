@@ -1,7 +1,8 @@
 import { Box, Card, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import AddListForm from "./AddListForm";
 import { useState } from "react";
+
+import AddListForm from "./AddListForm";
 
 const AddList = ({ boardId, setLists }) => {
   const [addListForm, setAddListFrom] = useState(false);

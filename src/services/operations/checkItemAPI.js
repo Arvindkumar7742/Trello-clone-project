@@ -1,8 +1,8 @@
+import { toast } from "react-toastify";
+
 // fetching the API key and token for endpoints
 const APIKey = import.meta.env.VITE_API_KEY;
 const APIToken = import.meta.env.VITE_API_TOKEN;
-
-import { toast } from "react-toastify";
 
 import { apiConnector } from "../apiconnector";
 import { checkItemsEndPoints } from "../apis";
@@ -29,8 +29,6 @@ export async function fetchAllCheckItems(checkListId) {
       }
     );
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -41,10 +39,6 @@ export async function fetchAllCheckItems(checkListId) {
       err?.response?.data ||
         err.message ||
         "Error in getting the Check Items data"
-    );
-    console.log(
-      "Print the Error from calling API To get all the checkItems::",
-      err
     );
   }
 }
@@ -64,8 +58,6 @@ export async function createCheckItem(checkListId, checkItemName) {
       }
     );
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -75,10 +67,6 @@ export async function createCheckItem(checkListId, checkItemName) {
   } catch (err) {
     toast.error(
       err?.response?.data || err.message || "Error in Creating check Item"
-    );
-    console.log(
-      "Print the Error from calling API To get all the checkItems::",
-      err
     );
   }
 }
@@ -97,8 +85,6 @@ export async function deleteCheckItem(checkListId, checkItemId) {
       }
     );
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -108,10 +94,6 @@ export async function deleteCheckItem(checkListId, checkItemId) {
   } catch (err) {
     toast.error(
       err?.response?.data || err.message || "Error in deleting check Item"
-    );
-    console.log(
-      "Print the Error from calling API To delete a checkItem::",
-      err
     );
   }
 }
@@ -131,8 +113,6 @@ export async function updateCheckItem(cardId, checkItemId, status) {
       }
     );
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -141,10 +121,6 @@ export async function updateCheckItem(cardId, checkItemId, status) {
   } catch (err) {
     toast.error(
       err?.response?.data || err.message || "Error in updating check Item"
-    );
-    console.log(
-      "Print the Error from calling API To updating a checkItem::",
-      err
     );
   }
 }

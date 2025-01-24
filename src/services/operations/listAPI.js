@@ -1,8 +1,8 @@
+import { toast } from "react-toastify";
+
 // fetching the API key and token for endpoints
 const APIKey = import.meta.env.VITE_API_KEY;
 const APIToken = import.meta.env.VITE_API_TOKEN;
-
-import { toast } from "react-toastify";
 
 import { apiConnector } from "../apiconnector";
 import { listEndPoints } from "../apis";
@@ -24,8 +24,6 @@ export async function getAllLists(boardId) {
       }
     );
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -35,7 +33,6 @@ export async function getAllLists(boardId) {
     toast.error(
       err?.response?.data || err.message || "Error in getting all the lists"
     );
-    console.log("Print the Error from calling API::", err);
   }
 }
 
@@ -54,8 +51,6 @@ export async function createList(boardId, title) {
       }
     );
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -66,7 +61,6 @@ export async function createList(boardId, title) {
     toast.error(
       err?.response?.data || err.message || "Error in creating a list"
     );
-    console.log("Print the Error from calling API for creating an list::", err);
   }
 }
 
@@ -85,8 +79,6 @@ export async function deleteList(listId) {
       }
     );
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -97,6 +89,5 @@ export async function deleteList(listId) {
     toast.error(
       err?.response?.data || err.message || "Error in creating a list"
     );
-    console.log("Print the Error from calling API for Deleting  a list::", err);
   }
 }

@@ -1,6 +1,7 @@
 import { Card, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
+
 import CreateBoardModal from "./CreateBoardModal";
 
 export const CreateBoard = ({ length, setBoards }) => {

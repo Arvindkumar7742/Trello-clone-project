@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+
 import { fetchAllCheckItems } from "../../services/operations/checkItemAPI";
 import CheckItemCard from "./CheckItemCard";
 import CheckItemForm from "./CheckItemForm";
@@ -9,7 +10,6 @@ const CheckItemsContainer = ({ checklistId, cardId }) => {
   const [checkItems, setCheckItems] = useState([]);
   const [addCheckItemForm, setAddCheckItemForm] = useState(false);
 
-  console.log("checkListId", checklistId);
   // fetch all the check items for this particular list
   useEffect(() => {
     const fetchData = async () => {

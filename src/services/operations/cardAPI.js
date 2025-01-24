@@ -1,8 +1,8 @@
+import { toast } from "react-toastify";
+
 // fetching the API key and token for endpoints
 const APIKey = import.meta.env.VITE_API_KEY;
 const APIToken = import.meta.env.VITE_API_TOKEN;
-
-import { toast } from "react-toastify";
 
 import { apiConnector } from "../apiconnector";
 import { cardEndPoints } from "../apis";
@@ -24,8 +24,6 @@ export async function getAllCards(listId) {
       }
     );
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -35,7 +33,6 @@ export async function getAllCards(listId) {
     toast.error(
       err?.response?.data || err.message || "Error in getting all the cards"
     );
-    console.log("Error in getting all the cards for a list", err);
   }
 }
 
@@ -49,8 +46,6 @@ export async function createCard(listId, cardName) {
       token: APIToken,
     });
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -60,10 +55,6 @@ export async function createCard(listId, cardName) {
   } catch (err) {
     toast.error(
       err?.response?.data || err.message || "Error in creating a data"
-    );
-    console.log(
-      "Print the Error from calling API for creating a a new card::",
-      err
     );
   }
 }
@@ -82,8 +73,6 @@ export async function deleteCard(cardId) {
       }
     );
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -94,6 +83,5 @@ export async function deleteCard(cardId) {
     toast.error(
       err?.response?.data || err.message || "Error in creating a data"
     );
-    console.log("Print the Error from calling API for deleting a card::", err);
   }
 }

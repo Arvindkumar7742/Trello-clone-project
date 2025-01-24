@@ -1,8 +1,8 @@
+import { toast } from "react-toastify";
+
 // fetching the API key and token for endpoints
 const APIKey = import.meta.env.VITE_API_KEY;
 const APIToken = import.meta.env.VITE_API_TOKEN;
-
-import { toast } from "react-toastify";
 
 import { apiConnector } from "../apiconnector";
 import { checkListEndPoints } from "../apis";
@@ -25,8 +25,6 @@ export async function fetchAllCheckLists(cardId) {
       }
     );
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -37,10 +35,6 @@ export async function fetchAllCheckLists(cardId) {
       err?.response?.data ||
         err.message ||
         "Error in getting the CheckLists data"
-    );
-    console.log(
-      "Print the Error from calling API To get all the checkLists::",
-      err
     );
   }
 }
@@ -55,8 +49,6 @@ export async function createCheckList(cardId, name) {
       token: APIToken,
     });
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -66,10 +58,6 @@ export async function createCheckList(cardId, name) {
   } catch (err) {
     toast.error(
       err?.response?.data || err.message || "Error in Creating new checklist"
-    );
-    console.log(
-      "Print the Error from calling API To create a new checklist::",
-      err
     );
   }
 }
@@ -88,8 +76,6 @@ export async function deleteCheckList(checkList) {
       }
     );
 
-    console.log("Response received:", response);
-
     if (!response?.data) {
       throw new Error("Unexpected response format");
     }
@@ -101,10 +87,6 @@ export async function deleteCheckList(checkList) {
       err?.response?.data ||
         err.message ||
         "Error in getting the CheckLists data"
-    );
-    console.log(
-      "Print the Error from calling API To Delete a checklist::",
-      err
     );
   }
 }

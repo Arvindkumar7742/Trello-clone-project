@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { Container, Typography } from "@mui/material";
 
 import { getAllLists } from "../services/operations/listAPI";
 import { Spinner } from "../components/Spinner";
-import { Container, Typography } from "@mui/material";
 import ListsContainer from "../components/List/ListsContainer";
 
 const BoardDetailsPage = () => {
