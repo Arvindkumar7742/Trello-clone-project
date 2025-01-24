@@ -35,12 +35,29 @@ const BoardDetailsPage = () => {
     <Container
       sx={{
         minWidth: "100vw",
-        minHeight: "647px",
-        overflowX: "scroll",
-        backgroundColor: backgroundColor,
+        minHeight: "100vh",
+        overflow: "auto",
+        backgroundColor: backgroundColor || "#000",
         backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none",
         backgroundPosition: "center",
         backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        pb: "50px",
+        "&::-webkit-scrollbar": {
+          width: "10px",
+          height: "10px",
+        },
+        "&::-webkit-scrollbar-track": {
+          backgroundColor: "#2e2e2e",
+          borderRadius: "5px",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "#6c757d",
+          borderRadius: "5px",
+          "&:hover": {
+            backgroundColor: "#adb5bd",
+          },
+        },
       }}
     >
       <Typography
@@ -51,6 +68,7 @@ const BoardDetailsPage = () => {
           fontSize: "25px",
           color: "white",
           fontFamily: "cursive",
+          position: "sticky",
         }}
       >
         {boardName}

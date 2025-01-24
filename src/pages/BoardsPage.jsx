@@ -31,9 +31,10 @@ const BoardsPage = () => {
       <Box
         sx={{
           maxWidth: "1024px",
-          backgroundColor: "whitesmoke",
+          backgroundColor: "rgb(231, 226, 226)",
           padding: 2,
           mx: "auto",
+          borderRadius: "10px",
           marginTop: "30px",
         }}
       >
