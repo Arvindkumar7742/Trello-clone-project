@@ -10,7 +10,8 @@ const ShowCards = ({ cards, setCards }) => {
   const [selectedCard, setSelectedCard] = useState(null);
 
   // Function to delete the card
-  async function handleCardDelete(cardId) {
+  async function handleCardDelete(e, cardId) {
+    e.stopPropagation();
     // Disable pointer events for this card's delete icon
     setDisabledIcons((prev) => ({ ...prev, [cardId]: true }));
 
@@ -69,7 +70,7 @@ const ShowCards = ({ cards, setCards }) => {
         >
           {card.name.slice(0, 150)}
           <DeleteIcon
-            onClick={() => handleCardDelete(card.id)}
+            onClick={(e) => handleCardDelete(e, card.id)}
             className="opacity-0 group-hover:opacity-100"
             sx={{
               fontSize: "medium",

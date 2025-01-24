@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchAllCheckLists } from "../../services/operations/checklistAPI";
 import { Box } from "@mui/material";
 import ScaleLoader from "../ScaleLoader";
+import { CheckListCard } from "./CheckListCard";
 
 export const CheckListsContainer = ({ cardId, checkLists, setCheckLists }) => {
   // fetching initial data for all the check lists
@@ -22,10 +23,17 @@ export const CheckListsContainer = ({ cardId, checkLists, setCheckLists }) => {
     return <ScaleLoader loading={loading} />;
   }
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        gap: "5px",
+        flexDirection: "column",
+        marginTop: "10px",
+      }}
+    >
       {checkLists &&
         checkLists.map((checkList) => (
-          <div key={checkList.id}>{checkList.name}</div>
+          <CheckListCard key={checkList.id} checkList={checkList} />
         ))}
     </Box>
   );

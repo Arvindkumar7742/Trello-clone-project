@@ -15,7 +15,7 @@ const style = {
   width: 400,
   boxShadow: 24,
   outline: "none",
-  borderRadius: "25px",
+  borderRadius: "15px",
   pt: 2,
   px: 4,
   pb: 3,
@@ -61,6 +61,7 @@ export default function CheckListModal({
             }}
           >
             <Typography
+              variant="h7"
               sx={{
                 fontSize: "19px",
                 fontFamily: "sans-serif",
