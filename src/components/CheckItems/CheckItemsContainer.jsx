@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { fetchAllCheckItems } from "../../services/operations/checkItemAPI";
 import CheckItemCard from "./CheckItemCard";
 import CheckItemForm from "./CheckItemForm";
+import ProgressBarComponent from "./ProgressBarComponent";
 
 const CheckItemsContainer = ({ checklistId }) => {
   const [checkItems, setCheckItems] = useState([]);
@@ -22,6 +23,7 @@ const CheckItemsContainer = ({ checklistId }) => {
   }, []);
   return (
     <Box>
+      <ProgressBarComponent checkItems={checkItems} />
       {checkItems.map((checkItem) => (
         <CheckItemCard
           key={checkItem.id}

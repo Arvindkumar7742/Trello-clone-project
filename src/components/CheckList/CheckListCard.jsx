@@ -41,11 +41,16 @@ export const CheckListCard = ({ checkList, setCheckLists }) => {
           alignItems: "center",
         }}
       >
-        <Typography>
+        <Typography
+          sx={{
+            fontFamily: "sans-serif",
+            fontWeight: 600,
+            fontSize: "16px",
+          }}
+        >
           <ChecklistIcon
             sx={{
               marginRight: "20px",
-              fontFamily: "sans-serif",
             }}
           />
           {checkList.name}
