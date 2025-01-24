@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import React, { useState } from "react";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import { deleteCheckList } from "../../services/operations/checklistAPI";
+import CheckItemsContainer from "../CheckItems/CheckItemsContainer";
 
 export const CheckListCard = ({ checkList, setCheckLists }) => {
   // for disabling the button while deleting a checkList
@@ -56,6 +57,8 @@ export const CheckListCard = ({ checkList, setCheckLists }) => {
             backgroundColor: "#444d55",
             width: "fit-content",
             p: 1,
+            pl: 2,
+            pr: 2,
             borderRadius: "10px",
             border: "2px solid #343B42",
             fontSize: "17px",
@@ -71,6 +74,9 @@ export const CheckListCard = ({ checkList, setCheckLists }) => {
           Delete
         </Typography>
       </Box>
+
+      {/* container to show all the check items */}
+      <CheckItemsContainer checklistId={checkList.id} />
     </Box>
   );
 };

@@ -15,6 +15,7 @@ const style = {
   bgcolor: "#343B42",
   boxShadow: 24,
   borderRadius: "10px",
+  outline: "none",
   pt: 2,
   px: 4,
   pb: 3,

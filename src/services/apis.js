@@ -26,3 +26,8 @@ export const checkListEndPoints = {
   CREATE_CHECK_LIST: baseURL + "/checklists",
   DELETE_CHECK_LIST: baseURL + "/checklists",
 };
+
+// CHECK ITEM END POINTS
+export const checkItemsEndPoints = {
+  GET_ALL_CHECK_ITEMS: baseURL + "/checklists",
+};
