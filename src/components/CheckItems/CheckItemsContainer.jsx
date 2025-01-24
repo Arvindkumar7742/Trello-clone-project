@@ -45,7 +45,7 @@ const CheckItemsContainer = ({ checklistId, cardId }) => {
             setAddCheckItemForm(true);
           }}
           sx={{
-            marginLeft: "50px",
+            marginLeft: "45px",
             display: "flex",
             gap: "8px",
             backgroundColor: "#444d55",

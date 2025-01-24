@@ -77,7 +77,7 @@ const CheckItemCard = ({ checklistId, checkItem, setCheckItems, cardId }) => {
           />
         }
         style={{
-          gap: "16px",
+          gap: "7px",
           cursor: disabledIcons[checkItem.id] ? "not-allowed" : "pointer",
           pointerEvents: disabledIcons[checkItem.id] ? "none" : "auto",
         }}

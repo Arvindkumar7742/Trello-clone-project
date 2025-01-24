@@ -46,13 +46,29 @@ export default function CheckListModal({
         <Box
           sx={{
             ...style,
-            width: "800px",
-            minHeight: "500px",
+            width: ["350px", "650px", "750px", "800px"],
+            maxHeight: "90vh",
+            height: "auto",
+            overflowY: "auto",
             backgroundColor: "#343B42",
             color: "rgb(182, 194, 207)",
             display: "flex",
             flexDirection: "column",
             gap: "10px",
+            "&::-webkit-scrollbar": {
+              width: "8px",
+            },
+            "&::-webkit-scrollbar-track": {
+              backgroundColor: "#444d55",
+              borderRadius: "4px",
+            },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "#6c757d",
+              borderRadius: "4px",
+              "&:hover": {
+                backgroundColor: "#adb5bd",
+              },
+            },
           }}
         >
           <Typography
@@ -83,7 +99,7 @@ export default function CheckListModal({
               setOpen(true);
             }}
             sx={{
-              marginLeft: "35px",
+              marginLeft: "45px",
               display: "flex",
               gap: "8px",
               backgroundColor: "#444d55",

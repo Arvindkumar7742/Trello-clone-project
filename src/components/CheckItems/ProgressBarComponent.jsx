@@ -20,7 +20,7 @@ const ProgressBarComponent = ({ checkItems }) => {
     <Box
       sx={{
         display: "flex",
-        gap: "25px",
+        gap: getPercentage() === 100 ? "15px" : "30px",
         margin: "10px 0",
         alignItems: "center",
       }}
