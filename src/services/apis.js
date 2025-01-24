@@ -30,4 +30,5 @@ export const checkListEndPoints = {
 // CHECK ITEM END POINTS
 export const checkItemsEndPoints = {
   GET_ALL_CHECK_ITEMS: baseURL + "/checklists",
+  CREATE_CHECK_ITEM: baseURL + "/checklists",
 };

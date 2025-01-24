@@ -2,10 +2,11 @@ import { Box, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { fetchAllCheckItems } from "../../services/operations/checkItemAPI";
 import CheckItemCard from "./CheckItemCard";
-import AddIcon from "@mui/icons-material/Add";
+import CheckItemForm from "./CheckItemForm";
 
 const CheckItemsContainer = ({ checklistId }) => {
   const [checkItems, setCheckItems] = useState([]);
+  const [addCheckItemForm, setAddCheckItemForm] = useState(false);
 
   console.log("checkListId", checklistId);
   // fetch all the check items for this particular list
@@ -28,33 +29,41 @@ const CheckItemsContainer = ({ checklistId }) => {
           setCheckItems={setCheckItems}
         />
       ))}
-      <Typography
-        onClick={() => {
-          // setOpen(true);
-        }}
-        sx={{
-          marginLeft: "50px",
-          display: "flex",
-          gap: "8px",
-          backgroundColor: "#444d55",
-          width: "fit-content",
-          p: 1,
-          pl: 2,
-          pr: 2,
-          marginTop: "5px",
-          borderRadius: "10px",
-          fontFamily: "sans-serif",
-          fontSize: "15px",
-          ":hover": {
-            cursor: "pointer",
-            backgroundColor: "#282d33",
-            transition: "all",
-            transitionDuration: "200ms",
-          },
-        }}
-      >
-        Add an item
-      </Typography>
+      {addCheckItemForm ? (
+        <CheckItemForm
+          checklistId={checklistId}
+          setCheckItems={setCheckItems}
+          setAddCheckItemForm={setAddCheckItemForm}
+        />
+      ) : (
+        <Typography
+          onClick={() => {
+            setAddCheckItemForm(true);
+          }}
+          sx={{
+            marginLeft: "50px",
+            display: "flex",
+            gap: "8px",
+            backgroundColor: "#444d55",
+            width: "fit-content",
+            p: 1,
+            pl: 2,
+            pr: 2,
+            marginTop: "5px",
+            borderRadius: "10px",
+            fontFamily: "sans-serif",
+            fontSize: "15px",
+            ":hover": {
+              cursor: "pointer",
+              backgroundColor: "#282d33",
+              transition: "all",
+              transitionDuration: "200ms",
+            },
+          }}
+        >
+          Add an item
+        </Typography>
+      )}
     </Box>
   );
 };
