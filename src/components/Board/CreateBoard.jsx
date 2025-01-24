@@ -3,7 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import CreateBoardModal from "./CreateBoardModal";
 
-export const CreateBoard = ({ length }) => {
+export const CreateBoard = ({ length, setBoards }) => {
   const [openModal, setOpenModal] = useState(false);
 
   function clickCreateHandler() {
@@ -41,7 +41,11 @@ export const CreateBoard = ({ length }) => {
         )}
       </Card>
       {openModal && (
-        <CreateBoardModal openModal={openModal} setOpenModal={setOpenModal} />
+        <CreateBoardModal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          setBoards={setBoards}
+        />
       )}
     </div>
   );

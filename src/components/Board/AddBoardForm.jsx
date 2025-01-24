@@ -11,7 +11,7 @@ import { useState } from "react";
 import { createBoard } from "../../services/operations/boardAPI";
 import { useNavigate } from "react-router-dom";
 
-const AddBoardForm = () => {
+const AddBoardForm = ({ setBoards, setOpenModal }) => {
   const [input, setInput] = useState("");
   const [backgroundOption, setBackgroundOption] = useState("");
   const navigate = useNavigate();
@@ -28,11 +28,12 @@ const AddBoardForm = () => {
   // handling the submission fo the field
   async function submitFormHandler(e) {
     e.preventDefault();
+    setOpenModal(false);
 
     //calling function to add new card
     const result = await createBoard(input, backgroundOption);
     if (result) {
-      navigate("/");
+      setBoards((prevBoard) => [...prevBoard, result]);
     }
   }
   return (
