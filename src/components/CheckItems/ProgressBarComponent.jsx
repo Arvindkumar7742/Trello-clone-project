@@ -1,6 +1,5 @@
 import { LinearProgress } from "@mui/joy";
 import { Box, Typography } from "@mui/material";
-import React from "react";
 
 const ProgressBarComponent = ({ checkItems }) => {
   // function to get the exact percentage of progress bar

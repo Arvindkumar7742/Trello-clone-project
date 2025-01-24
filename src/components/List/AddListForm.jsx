@@ -1,5 +1,5 @@
 import { Box, Button } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
 import { createList } from "../../services/operations/listAPI";

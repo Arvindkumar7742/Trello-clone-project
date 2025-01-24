@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { fetchAllCheckItems } from "../../services/operations/checkItemAPI";
 import CheckItemCard from "./CheckItemCard";

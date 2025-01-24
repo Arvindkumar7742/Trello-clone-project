@@ -8,14 +8,12 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { createBoard } from "../../services/operations/boardAPI";
 
 const AddBoardForm = ({ setBoards, setOpenModal }) => {
   const [input, setInput] = useState("");
   const [backgroundOption, setBackgroundOption] = useState("");
-  const navigate = useNavigate();
 
   const handleChangeBackground = (event) => {
     setBackgroundOption(event.target.value);

@@ -1,7 +1,7 @@
 import { Card } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const BoardCard = ({ board, length }) => {
+const BoardCard = ({ board }) => {
   const navigate = useNavigate();
 
   // destructuring the data from board

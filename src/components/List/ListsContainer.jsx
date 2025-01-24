@@ -1,5 +1,4 @@
 import { Container } from "@mui/material";
-import React from "react";
 
 import ListCard from "./ListCard";
 import AddList from "./AddList";
