@@ -10,7 +10,7 @@ const BoardsPage = () => {
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // fetching all the cards data
+  // fetching all the cards data initially
   useEffect(() => {
     const fetchBoardsData = async () => {
       const result = await getAllBoards();
@@ -52,9 +52,12 @@ const BoardsPage = () => {
             marginTop: "20px",
           }}
         >
+          {/* Iterating on the boards data to render */}
           {boards.map((board) => (
             <BoardCard key={board.id} board={board} />
           ))}
+
+          {/* Rendering component for creating new cards */}
           <CreateBoard length={boards.length} setBoards={setBoards} />
         </Container>
       </Box>

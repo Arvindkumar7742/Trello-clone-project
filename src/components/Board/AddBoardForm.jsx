@@ -15,6 +15,7 @@ const AddBoardForm = ({ setBoards, setOpenModal }) => {
   const [input, setInput] = useState("");
   const [backgroundOption, setBackgroundOption] = useState("");
 
+  // handling the changing in the background option
   const handleChangeBackground = (event) => {
     setBackgroundOption(event.target.value);
   };
@@ -25,7 +26,7 @@ const AddBoardForm = ({ setBoards, setOpenModal }) => {
   }
 
   // handling the submission fo the field
-  async function submitFormHandler(e) {
+  async function handleFormSubmit(e) {
     e.preventDefault();
     setOpenModal(false);
 
@@ -36,7 +37,7 @@ const AddBoardForm = ({ setBoards, setOpenModal }) => {
     }
   }
   return (
-    <form onSubmit={submitFormHandler}>
+    <form onSubmit={handleFormSubmit}>
       <Stack
         spacing={2}
         sx={{

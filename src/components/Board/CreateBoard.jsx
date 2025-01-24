@@ -8,7 +8,7 @@ export const CreateBoard = ({ length, setBoards }) => {
   const [openModal, setOpenModal] = useState(false);
 
   function clickCreateHandler() {
-    // condition of cards limits exceeded
+    // condition of creation cards limits exceeded
     if (length < 10) setOpenModal(true);
   }
   return (
@@ -34,13 +34,14 @@ export const CreateBoard = ({ length, setBoards }) => {
       >
         {length < 10 ? (
           <>
-            {" "}
             <AddIcon /> Create Board
           </>
         ) : (
           <Typography>Cards limit exceeded</Typography>
         )}
       </Card>
+
+      {/* opening modal form to get board configuration */}
       {openModal && (
         <CreateBoardModal
           openModal={openModal}
