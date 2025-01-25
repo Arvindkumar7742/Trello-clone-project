@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import BoardsPage from "./pages/BoardsPage";
 import BoardDetailsPage from "./pages/BoardDetailsPage";
+import { NotFound } from "./pages/NotFound";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route index element={<BoardsPage />} />
           <Route path="/boards/:id" element={<BoardDetailsPage />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
