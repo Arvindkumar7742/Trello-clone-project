@@ -30,7 +30,6 @@ export default function CheckListModal({
 }) {
   // managing state to add form to add checklist
   const [open, setOpen] = useState(false);
-  const [checkLists, setCheckLists] = useState(null);
 
   const handleClose = () => {
     setOpenCheckListModal(false);
@@ -120,19 +119,16 @@ export default function CheckListModal({
           >
             <AddIcon /> Add checklist
           </Typography>
+
           {/* CheckLists container for all the checkLists */}
-          <CheckListsContainer
-            cardId={selectedCard.cardId}
-            checkLists={checkLists}
-            setCheckLists={setCheckLists}
-          />
+          <CheckListsContainer cardId={selectedCard.cardId} />
+
           {/* Modal for adding a new checkLists */}
           {open && (
             <CheckListForm
               open={open}
               setOpen={setOpen}
               cardId={selectedCard.cardId}
-              setCheckLists={setCheckLists}
             />
           )}
         </Box>

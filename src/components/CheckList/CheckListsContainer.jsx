@@ -4,16 +4,24 @@ import { Box } from "@mui/material";
 import { fetchAllCheckLists } from "../../services/operations/checklistAPI";
 import ScaleLoader from "../ScaleLoader";
 import { CheckListCard } from "./CheckListCard";
+import { useDispatch, useSelector } from "react-redux";
+import { setCheckLists } from "../../redux/slices/checkListsSlice";
 
-export const CheckListsContainer = ({ cardId, checkLists, setCheckLists }) => {
+export const CheckListsContainer = ({ cardId }) => {
   // fetching initial data for all the check lists
   const [loading, setLoading] = useState(true);
+
+  // fetching the data
+  const { checkLists } = useSelector((state) => state.checkLists);
+
+  // dispatcher to dispatch the actions
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetchAllCheckLists(cardId);
       if (result) {
-        setCheckLists(result);
+        dispatch(setCheckLists(result));
       }
       setLoading(false);
     };
@@ -38,7 +46,6 @@ export const CheckListsContainer = ({ cardId, checkLists, setCheckLists }) => {
             key={checkList.id}
             checkList={checkList}
             cardId={cardId}
-            setCheckLists={setCheckLists}
           />
         ))}
     </Box>

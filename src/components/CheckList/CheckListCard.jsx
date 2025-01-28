@@ -4,10 +4,14 @@ import ChecklistIcon from "@mui/icons-material/Checklist";
 
 import { deleteCheckList } from "../../services/operations/checklistAPI";
 import CheckItemsContainer from "../CheckItems/CheckItemsContainer";
+import { useDispatch } from "react-redux";
+import { deleteExistingCheckList } from "../../redux/slices/checkListsSlice";
 
-export const CheckListCard = ({ checkList, setCheckLists, cardId }) => {
+export const CheckListCard = ({ checkList, cardId }) => {
   // for disabling the button while deleting a checkList
   const [disabledIcons, setDisabledIcons] = useState({});
+
+  const dispatch = useDispatch();
 
   // function to delete a particular check list
   async function handleCheckListDelete(checklistId) {
@@ -18,9 +22,7 @@ export const CheckListCard = ({ checkList, setCheckLists, cardId }) => {
     const result = await deleteCheckList(checklistId);
 
     if (result) {
-      setCheckLists((prevCheckList) =>
-        prevCheckList.filter((itCheckList) => itCheckList.id !== checklistId)
-      );
+      dispatch(deleteExistingCheckList({ id: checklistId }));
     } else {
       // enable the btn again
       setDisabledIcons((prev) => ({ ...prev, [checklistId]: false }));

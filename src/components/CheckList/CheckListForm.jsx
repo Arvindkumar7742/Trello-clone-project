@@ -6,6 +6,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Typography } from "@mui/material";
 
 import { createCheckList } from "../../services/operations/checklistAPI";
+import { useDispatch } from "react-redux";
+import { addNewCheckList } from "../../redux/slices/checkListsSlice";
 
 const style = {
   position: "absolute",
@@ -22,9 +24,12 @@ const style = {
   pb: 3,
 };
 
-export function CheckListForm({ open, setOpen, cardId, setCheckLists }) {
+export function CheckListForm({ open, setOpen, cardId }) {
   const ref = React.useRef();
   const [title, setTitle] = React.useState("Checklist");
+
+  // dispatcher to dispatch the actions
+  const dispatch = useDispatch();
 
   // function for adding in the card
   async function handleAddBtnClick() {
@@ -34,7 +39,7 @@ export function CheckListForm({ open, setOpen, cardId, setCheckLists }) {
     setOpen(false);
     const result = await createCheckList(cardId, title);
     if (result) {
-      setCheckLists((prvChecklists) => [...prvChecklists, result]);
+      dispatch(addNewCheckList(result));
     }
   }
 
