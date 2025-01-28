@@ -1,11 +1,14 @@
 import { Box, Button } from "@mui/material";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import { useDispatch } from "react-redux";
 
 import { createList } from "../../services/operations/listAPI";
+import { addNewList } from "../../redux/slices/listsSlice";
 
-const AddListForm = ({ setAddListFrom, setLists, boardId }) => {
+const AddListForm = ({ setAddListFrom, boardId }) => {
   const [title, setTitle] = useState("");
+  const dispatch = useDispatch();
 
   // function for adding in the card
   async function handleAddBtnClick() {
@@ -16,9 +19,7 @@ const AddListForm = ({ setAddListFrom, setLists, boardId }) => {
     // calling api function to create new list
     const result = await createList(boardId, title);
     if (result) {
-      setLists((prvLists) => {
-        return [...prvLists, result];
-      });
+      dispatch(addNewList(result));
     }
     setAddListFrom(false);
   }

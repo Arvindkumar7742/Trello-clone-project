@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Container, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getAllLists } from "../services/operations/listAPI";
 import { Spinner } from "../components/Spinner";
 import ListsContainer from "../components/List/ListsContainer";
+import { setLists } from "../redux/slices/listsSlice";
 
 const BoardDetailsPage = () => {
   const [loading, setLoading] = useState(true);
-  const [lists, setLists] = useState();
+  const { lists } = useSelector((state) => state.lists);
+  const dispatch = useDispatch();
 
   // accessing the info from the route
   const location = useLocation();
@@ -21,7 +24,9 @@ const BoardDetailsPage = () => {
   useEffect(() => {
     const fetchAllLists = async () => {
       const result = await getAllLists(id);
-      setLists(result);
+      if (result) {
+        dispatch(setLists(result));
+      }
       setLoading(false);
     };
 
@@ -77,7 +82,7 @@ const BoardDetailsPage = () => {
       </Typography>
 
       {/* lists container to show all the lists */}
-      <ListsContainer boardId={id} lists={lists} setLists={setLists} />
+      <ListsContainer boardId={id} />
     </Container>
   );
 };

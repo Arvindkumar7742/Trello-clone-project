@@ -1,9 +1,12 @@
 import { Container } from "@mui/material";
+import { useSelector } from "react-redux";
 
 import ListCard from "./ListCard";
 import AddList from "./AddList";
 
-const ListsContainer = ({ boardId, lists, setLists }) => {
+const ListsContainer = ({ boardId }) => {
+  const { lists } = useSelector((state) => state.lists);
+
   return (
     <Container
       sx={{
@@ -17,11 +20,11 @@ const ListsContainer = ({ boardId, lists, setLists }) => {
     >
       {/* map on the list to show all the lists */}
       {lists.map((list) => (
-        <ListCard key={list.id} list={list} setLists={setLists} />
+        <ListCard key={list.id} list={list} />
       ))}
 
       {/* components to add new list */}
-      <AddList boardId={boardId} setLists={setLists} />
+      <AddList boardId={boardId} />
     </Container>
   );
 };

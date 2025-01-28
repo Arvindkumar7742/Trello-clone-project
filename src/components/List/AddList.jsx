@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import AddListForm from "./AddListForm";
 
-const AddList = ({ boardId, setLists }) => {
+const AddList = ({ boardId }) => {
   const [addListForm, setAddListFrom] = useState(false);
 
   // function to add the new list in the all lists
@@ -25,11 +25,7 @@ const AddList = ({ boardId, setLists }) => {
             borderRadius: "10px",
           }}
         >
-          <AddListForm
-            setAddListFrom={setAddListFrom}
-            setLists={setLists}
-            boardId={boardId}
-          />
+          <AddListForm setAddListFrom={setAddListFrom} boardId={boardId} />
         </Box>
       ) : (
         <Card

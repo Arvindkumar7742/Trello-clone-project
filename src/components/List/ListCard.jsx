@@ -14,10 +14,14 @@ import { getAllCards } from "../../services/operations/cardAPI";
 import ShowCards from "../Card/ShowCards";
 import AddNewCard from "../Card/AddNewCard";
 import { deleteList } from "../../services/operations/listAPI";
+import { useDispatch } from "react-redux";
+import { deleteExistingList } from "../../redux/slices/listsSlice";
 
-const ListCard = ({ list, setLists }) => {
+const ListCard = ({ list }) => {
   const [cards, setCards] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const dispatch = useDispatch();
 
   // Destructuring the list data
   const { name, id } = list;
@@ -46,10 +50,8 @@ const ListCard = ({ list, setLists }) => {
     handleClosePopper();
     const res = await deleteList(list.id);
     if (res) {
-      // filtering the lists for the deleted list
-      setLists((prevLists) =>
-        prevLists.filter((itList) => itList.id !== list.id)
-      );
+      // dispatching the action to delete the lists
+      dispatch(deleteExistingList({ id }));
     }
   };
 
