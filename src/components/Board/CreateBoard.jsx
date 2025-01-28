@@ -3,13 +3,15 @@ import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 
 import CreateBoardModal from "./CreateBoardModal";
+import { useSelector } from "react-redux";
 
-export const CreateBoard = ({ length, setBoards }) => {
+export const CreateBoard = () => {
+  const { boards } = useSelector((state) => state.boards);
   const [openModal, setOpenModal] = useState(false);
 
   function clickCreateHandler() {
     // condition of creation cards limits exceeded
-    if (length < 10) setOpenModal(true);
+    if (boards.length < 10) setOpenModal(true);
   }
   return (
     <div>
@@ -32,7 +34,7 @@ export const CreateBoard = ({ length, setBoards }) => {
           transitionDuration: "200ms",
         }}
       >
-        {length < 10 ? (
+        {boards.length < 10 ? (
           <>
             <AddIcon /> Create Board
           </>
@@ -43,11 +45,7 @@ export const CreateBoard = ({ length, setBoards }) => {
 
       {/* opening modal form to get board configuration */}
       {openModal && (
-        <CreateBoardModal
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-          setBoards={setBoards}
-        />
+        <CreateBoardModal openModal={openModal} setOpenModal={setOpenModal} />
       )}
     </div>
   );

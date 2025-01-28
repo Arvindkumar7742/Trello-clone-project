@@ -10,10 +10,13 @@ import {
 import { useState } from "react";
 
 import { createBoard } from "../../services/operations/boardAPI";
+import { useDispatch } from "react-redux";
+import { addNewBoard } from "../../redux/slices/boardsSlice";
 
-const AddBoardForm = ({ setBoards, setOpenModal }) => {
+const AddBoardForm = ({ setOpenModal }) => {
   const [input, setInput] = useState("");
   const [backgroundOption, setBackgroundOption] = useState("");
+  const dispatch = useDispatch();
 
   // handling the changing in the background option
   const handleChangeBackground = (event) => {
@@ -33,7 +36,7 @@ const AddBoardForm = ({ setBoards, setOpenModal }) => {
     //calling function to add new card
     const result = await createBoard(input, backgroundOption);
     if (result) {
-      setBoards((prevBoard) => [...prevBoard, result]);
+      dispatch(addNewBoard(result));
     }
   }
   return (

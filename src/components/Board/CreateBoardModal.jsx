@@ -18,11 +18,7 @@ const style = {
   p: 4,
 };
 
-export default function CreateBoardModal({
-  openModal,
-  setOpenModal,
-  setBoards,
-}) {
+export default function CreateBoardModal({ openModal, setOpenModal }) {
   const handleClose = () => setOpenModal(false);
 
   return (
@@ -58,7 +54,7 @@ export default function CreateBoardModal({
             />
           </Container>
           {/* attaching the form */}
-          <AddBoardForm setBoards={setBoards} setOpenModal={setOpenModal} />
+          <AddBoardForm setOpenModal={setOpenModal} />
         </Box>
       </Modal>
     </div>

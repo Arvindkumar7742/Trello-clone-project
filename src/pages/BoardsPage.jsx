@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getAllBoards } from "../services/operations/boardAPI";
 import { Spinner } from "../components/Spinner";
 import BoardCard from "../components/Board/BoardCard";
 import { CreateBoard } from "../components/Board/CreateBoard";
+import { setBoards } from "../redux/slices/boardsSlice";
 
 const BoardsPage = () => {
-  const [boards, setBoards] = useState([]);
+  const { boards } = useSelector((state) => state.boards);
+  const dispatch = useDispatch();
+
   const [loading, setLoading] = useState(true);
 
   // fetching all the cards data initially
@@ -15,7 +19,7 @@ const BoardsPage = () => {
     const fetchBoardsData = async () => {
       const result = await getAllBoards();
       if (result) {
-        setBoards(result);
+        dispatch(setBoards(result));
       }
       setLoading(false);
     };
@@ -58,7 +62,7 @@ const BoardsPage = () => {
           ))}
 
           {/* Rendering component for creating new cards */}
-          <CreateBoard length={boards.length} setBoards={setBoards} />
+          <CreateBoard />
         </Container>
       </Box>
     </>
