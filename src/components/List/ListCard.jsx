@@ -9,28 +9,35 @@ import {
 } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { getAllCards } from "../../services/operations/cardAPI";
 import ShowCards from "../Card/ShowCards";
 import AddNewCard from "../Card/AddNewCard";
 import { deleteList } from "../../services/operations/listAPI";
-import { useDispatch } from "react-redux";
 import { deleteExistingList } from "../../redux/slices/listsSlice";
+import { pushNewCards } from "../../redux/slices/cardsSlice";
 
 const ListCard = ({ list }) => {
-  const [cards, setCards] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
 
+  // dispatcher to dispatch the actions
   const dispatch = useDispatch();
 
   // Destructuring the list data
   const { name, id } = list;
 
+  // fetching all the cards of this lists
+  const { listCards } = useSelector((state) => state.cards);
+  const cardsOfList = listCards.find((card) => card.listId === id)?.cards ?? [];
+
   // Get all the cards of this list on first render
   useEffect(() => {
     const fetchAllCards = async () => {
       const result = await getAllCards(id);
-      setCards(result);
+      if (result) {
+        dispatch(pushNewCards({ cards: result, listId: id }));
+      }
     };
     fetchAllCards();
   }, [id]);
@@ -49,8 +56,10 @@ const ListCard = ({ list }) => {
   const handleDeleteAction = async () => {
     handleClosePopper();
     const res = await deleteList(list.id);
+    console.log("Prinitntg the results:::", res);
+
     if (res) {
-      // dispatching the action to delete the lists
+      // dispatching the action to delete the list
       dispatch(deleteExistingList({ id }));
     }
   };
@@ -121,10 +130,12 @@ const ListCard = ({ list }) => {
       </Popper>
 
       {/* Showing all the cards */}
-      {cards.length > 0 && <ShowCards cards={cards} setCards={setCards} />}
+      {cardsOfList.length > 0 && (
+        <ShowCards cards={cardsOfList} listId={list.id} />
+      )}
 
       {/* Component for adding new card */}
-      <AddNewCard setCards={setCards} listId={list.id} />
+      <AddNewCard listId={list.id} />
     </Card>
   );
 };

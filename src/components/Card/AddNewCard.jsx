@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import AddCardForm from "./AddCardForm";
 
-const AddNewCard = ({ setCards, listId }) => {
+const AddNewCard = ({ listId }) => {
   const [addCardForm, setAddCardFrom] = useState(false);
 
   // ro add the add card form in rhe cards
@@ -19,11 +19,7 @@ const AddNewCard = ({ setCards, listId }) => {
       }}
     >
       {addCardForm ? (
-        <AddCardForm
-          setAddCardFrom={setAddCardFrom}
-          setCards={setCards}
-          listId={listId}
-        />
+        <AddCardForm setAddCardFrom={setAddCardFrom} listId={listId} />
       ) : (
         <Typography
           onClick={handleAddCardClick}

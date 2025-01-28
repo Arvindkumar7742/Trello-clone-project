@@ -1,14 +1,19 @@
 import { Box, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { deleteCard } from "../../services/operations/cardAPI";
 import CheckListModal from "../CheckList/CheckListModal";
+import { deleteExistingCard } from "../../redux/slices/cardsSlice";
 
-const ShowCards = ({ cards, setCards }) => {
+const ShowCards = ({ cards, listId }) => {
   const [disabledIcons, setDisabledIcons] = useState({});
   const [openCheckListModal, setOpenCheckListModal] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+
+  // dispatcher to dispatch the actions
+  const dispatch = useDispatch();
 
   // Function to delete the card
   async function handleCardDelete(e, cardId) {
@@ -19,7 +24,7 @@ const ShowCards = ({ cards, setCards }) => {
     // using function to delete the particular card
     const result = await deleteCard(cardId);
     if (result) {
-      setCards((prevCards) => prevCards.filter((card) => card.id !== cardId));
+      dispatch(deleteExistingCard({ cardId, listId }));
     } else {
       // enable the btn again
       setDisabledIcons((prev) => ({ ...prev, [cardId]: false }));

@@ -10,7 +10,6 @@ import { setLists } from "../redux/slices/listsSlice";
 
 const BoardDetailsPage = () => {
   const [loading, setLoading] = useState(true);
-  const { lists } = useSelector((state) => state.lists);
   const dispatch = useDispatch();
 
   // accessing the info from the route
