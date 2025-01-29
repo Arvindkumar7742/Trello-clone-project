@@ -4,12 +4,19 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import { deleteCheckItem } from "../../services/operations/checkItemAPI";
 import { updateCheckItem } from "../../services/operations/checkItemAPI";
+import { useDispatch } from "react-redux";
+import {
+  deleteExistingCheckItem,
+  updateExistingCheckItem,
+} from "../../redux/slices/checkItemsSlice";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const CheckItemCard = ({ checklistId, checkItem, setCheckItems, cardId }) => {
+const CheckItemCard = ({ checklistId, checkItem, cardId }) => {
   const [disabledIcons, setDisabledIcons] = useState({});
   const [isChecked, setIsChecked] = useState(checkItem.state === "complete");
+
+  const dispatch = useDispatch();
 
   // function to handle check box change
   const handleCheckboxChange = async (event) => {
@@ -23,15 +30,13 @@ const CheckItemCard = ({ checklistId, checkItem, setCheckItems, cardId }) => {
     // making api call to update check item
     const result = await updateCheckItem(cardId, checkItem.id, state);
     if (result) {
-      // updating the check items
-      setCheckItems((prevCheckItem) => {
-        prevCheckItem.forEach((ctCheckItem) => {
-          if (ctCheckItem.id === checkItem.id) {
-            ctCheckItem.state = result.state;
-          }
-        });
-        return [...prevCheckItem];
-      });
+      dispatch(
+        updateExistingCheckItem({
+          checkListId: checklistId,
+          checkItemId: checkItem.id,
+          status: result.state,
+        })
+      );
     }
     // Disable pointer events for this card's delete icon
     setDisabledIcons((prev) => ({ ...prev, [checkItem.id]: false }));
@@ -45,8 +50,11 @@ const CheckItemCard = ({ checklistId, checkItem, setCheckItems, cardId }) => {
     // using function to delete the particular card
     const result = await deleteCheckItem(checklistId, checkItemId);
     if (result) {
-      setCheckItems((prevCheckItems) =>
-        prevCheckItems.filter((itCheckItem) => itCheckItem.id !== checkItemId)
+      dispatch(
+        deleteExistingCheckItem({
+          checkListId: checklistId,
+          checkItemId: checkItem.id,
+        })
       );
     } else {
       // enable the btn again

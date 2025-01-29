@@ -5,17 +5,30 @@ import { fetchAllCheckItems } from "../../services/operations/checkItemAPI";
 import CheckItemCard from "./CheckItemCard";
 import CheckItemForm from "./CheckItemForm";
 import ProgressBarComponent from "./ProgressBarComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { pushCheckItems } from "../../redux/slices/checkItemsSlice";
 
 const CheckItemsContainer = ({ checklistId, cardId }) => {
-  const [checkItems, setCheckItems] = useState([]);
   const [addCheckItemForm, setAddCheckItemForm] = useState(false);
+
+  // fetching the checkItem of the checkItem
+  const { checkListCheckItems } = useSelector((state) => state.checkItems);
+  const checkItems =
+    checkListCheckItems.find(
+      (listCheckItem) => listCheckItem.checkListId === checklistId
+    )?.checkItems ?? [];
+
+  // dispatcher to dispatch the actions
+  const dispatch = useDispatch();
 
   // fetch all the check items for this particular list
   useEffect(() => {
     const fetchData = async () => {
       const result = await fetchAllCheckItems(checklistId);
       if (result) {
-        setCheckItems(result);
+        dispatch(
+          pushCheckItems({ checkListId: checklistId, checkItems: result })
+        );
       }
     };
     // calling the function to get the data initial
@@ -29,14 +42,12 @@ const CheckItemsContainer = ({ checklistId, cardId }) => {
           key={checkItem.id}
           checkItem={checkItem}
           checklistId={checklistId}
-          setCheckItems={setCheckItems}
           cardId={cardId}
         />
       ))}
       {addCheckItemForm ? (
         <CheckItemForm
           checklistId={checklistId}
-          setCheckItems={setCheckItems}
           setAddCheckItemForm={setAddCheckItemForm}
         />
       ) : (

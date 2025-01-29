@@ -3,9 +3,13 @@ import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
 
 import { createCheckItem } from "../../services/operations/checkItemAPI";
+import { useDispatch } from "react-redux";
+import { addNewCheckItem } from "../../redux/slices/checkItemsSlice";
 
-const CheckItemForm = ({ checklistId, setCheckItems, setAddCheckItemForm }) => {
+const CheckItemForm = ({ checklistId, setAddCheckItemForm }) => {
   const [checkItemName, setCheckItemName] = useState("");
+
+  const dispatch = useDispatch();
 
   // function to close the form to add new item
   async function handleAddBtnClick() {
@@ -17,7 +21,7 @@ const CheckItemForm = ({ checklistId, setCheckItems, setAddCheckItemForm }) => {
     // calling api to create new check item
     const result = await createCheckItem(checklistId, checkItemName);
     if (result) {
-      setCheckItems((prevCheckItems) => [...prevCheckItems, result]);
+      dispatch(addNewCheckItem({ checklistId, newCheckItem: result }));
     }
   }
 
