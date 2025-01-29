@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 
 import { fetchAllCheckLists } from "../../services/operations/checklistAPI";
 import ScaleLoader from "../ScaleLoader";
 import { CheckListCard } from "./CheckListCard";
-import { useDispatch, useSelector } from "react-redux";
 import { setCheckLists } from "../../redux/slices/checkListsSlice";
 
 export const CheckListsContainer = ({ cardId }) => {

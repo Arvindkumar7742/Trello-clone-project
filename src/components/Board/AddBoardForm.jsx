@@ -8,9 +8,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { createBoard } from "../../services/operations/boardAPI";
-import { useDispatch } from "react-redux";
 import { addNewBoard } from "../../redux/slices/boardsSlice";
 
 const AddBoardForm = ({ setOpenModal }) => {

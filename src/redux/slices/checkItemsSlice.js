@@ -3,12 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const checkItemsSlice = createSlice({
   name: "checkItems",
   initialState: {
-    checkListCheckItems: [
-      // {
-      //     checkListId:"23wuss4d3sjd92",
-      //     checkItems:[]
-      // }
-    ],
+    checkListCheckItems: [],
   },
   reducers: {
     // add new cards in the existing cards

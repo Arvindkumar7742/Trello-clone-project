@@ -1,9 +1,9 @@
 import { Textarea } from "@mui/joy";
 import { Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { createCheckItem } from "../../services/operations/checkItemAPI";
-import { useDispatch } from "react-redux";
 import { addNewCheckItem } from "../../redux/slices/checkItemsSlice";
 
 const CheckItemForm = ({ checklistId, setAddCheckItemForm }) => {

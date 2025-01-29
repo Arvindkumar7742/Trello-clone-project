@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Container, Typography } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { getAllLists } from "../services/operations/listAPI";
 import { Spinner } from "../components/Spinner";

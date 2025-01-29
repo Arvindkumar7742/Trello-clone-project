@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { fetchAllCheckItems } from "../../services/operations/checkItemAPI";
 import CheckItemCard from "./CheckItemCard";
 import CheckItemForm from "./CheckItemForm";
 import ProgressBarComponent from "./ProgressBarComponent";
-import { useDispatch, useSelector } from "react-redux";
 import { pushCheckItems } from "../../redux/slices/checkItemsSlice";
 
 const CheckItemsContainer = ({ checklistId, cardId }) => {

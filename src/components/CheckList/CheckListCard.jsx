@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import ChecklistIcon from "@mui/icons-material/Checklist";
+import { useDispatch } from "react-redux";
 
 import { deleteCheckList } from "../../services/operations/checklistAPI";
 import CheckItemsContainer from "../CheckItems/CheckItemsContainer";
-import { useDispatch } from "react-redux";
 import { deleteExistingCheckList } from "../../redux/slices/checkListsSlice";
 
 export const CheckListCard = ({ checkList, cardId }) => {

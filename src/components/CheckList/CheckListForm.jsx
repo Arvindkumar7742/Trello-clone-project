@@ -4,9 +4,9 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import { Typography } from "@mui/material";
+import { useDispatch } from "react-redux";
 
 import { createCheckList } from "../../services/operations/checklistAPI";
-import { useDispatch } from "react-redux";
 import { addNewCheckList } from "../../redux/slices/checkListsSlice";
 
 const style = {
