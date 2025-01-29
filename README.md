@@ -2,6 +2,10 @@
 
 A Trello-inspired project built using React and the official [Trello API](https://developer.atlassian.com/cloud/trello/rest/). This project showcases a simplified implementation of Trello features, including boards, lists, cards, checklists, and checkitems.
 
+## Deployed link
+
+`https://trello-react-arvind.vercel.app/`
+
 ## Features
 
 ### Boards
